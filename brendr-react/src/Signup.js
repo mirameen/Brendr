@@ -8,6 +8,10 @@ function submit(details) {
   axios.post(signupEndpoint, details)
 }
 
+function signupUsingGoogle() {
+  // TODO
+}
+
 function Signup() {
 
   const [firstname, setFirstname] = useState('')
@@ -97,7 +101,7 @@ function Signup() {
             <label htmlFor="password01">Password</label>
             <input
               className="form-control"
-              type="text"
+              type="password"
               id="password01"
               name="password"
               placeholder="password"
@@ -121,7 +125,7 @@ function Signup() {
           </div>
 
           <div className="button-align">
-            <button type="button" className="btn btn-outline-warning">
+            <button type="button" className="btn btn-outline-warning" onClick={() => signupUsingGoogle()}>
               Sign Up using Google
             </button>
           </div>

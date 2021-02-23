@@ -8,6 +8,10 @@ function submit(details) {
   axios.post(loginEndpoint, details)
 }
 
+function loginUsingGoogle() {
+  // TODO
+}
+
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -32,7 +36,7 @@ function Login() {
           <div className="form-group">
             <input
               className="form-control"
-              type="text"
+              type="password"
               name="password"
               placeholder="password"
               value={password}
@@ -51,11 +55,7 @@ function Login() {
           </div>
 
           <div>
-            <button type="button" className="btn btn-outline-warning" onClick={() => submit({
-              username: username,
-              password: password,
-              loginUsingGoogle: true
-            })}>
+            <button type="button" className="btn btn-outline-warning" onClick={() => loginUsingGoogle()}>
               Login using Google
             </button>
           </div>
