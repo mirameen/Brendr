@@ -6,7 +6,7 @@ import photo4 from './photos/photo4.png';
 import photo5 from './photos/photo5.png';
 import photo6 from './photos/photo6.png';
 
-const Lend = () => {
+function Lend() {
   return (
     <div className="post-content">
       <div className="row text-center">

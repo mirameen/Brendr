@@ -3,12 +3,13 @@ import heroImg from './photos/heroImg.jpg';
 import person4 from './photos/person4.png';
 
 
-const Home = () => {
+function Home() {
     return ( <div className="main-conatainer">
     <div className="intro-top">
-      <p>Can't find people to whom you can Lend and Borrow from?</p>
+      <p>Can't find trusted people to borrow from?</p>
+      <p>Welcome to <b>Brendr</b>.</p>
       <h2>
-        We help people connect and make Lending and Borrowing things easy
+        Borrowing-Lending Made Easy.
       </h2>
     </div>
 
