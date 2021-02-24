@@ -5,12 +5,21 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+var passport		=require("passport");
+var LocalStrategy	=require("passport-local");
+var User 			=require("./models/User");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const itemRouter  = require('./routes/item');
 
+
 const app = express();
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 mongoose.connect('mongodb+srv://mirameen84:VXIg8sFOpVnhZ4mB@mongouploads.ppu8t.mongodb.net/brendr?retryWrites=true&w=majority',{
   useNewUrlParser: true,
@@ -32,7 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 app.use('/items',itemRouter);
 
 // catch 404 and forward to error handler
@@ -50,7 +59,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log('App listening on port 3000!');
 });
 module.exports = app;

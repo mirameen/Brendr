@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-const signupEndpoint = '/signup'
+const signupEndpoint = '/api/users/register'
 
 function submit(details) {
   axios.post(signupEndpoint, details)
