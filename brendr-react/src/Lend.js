@@ -13,12 +13,12 @@ function Lend() {
   const userSpec = useContext(UserContext);
 
   useEffect(() => {
-    if(userSpec.user.isAuthenticated !== true){
+    if(!userSpec.currUser || userSpec.currUser.success !== true){
       alert("Please login to access this page");
     }
   },[])
 
-  if(userSpec.user.isAuthenticated !== true){
+  if(!userSpec.currUser || userSpec.currUser.success !== true){
     return <Redirect to = "/login" />;
   }
 

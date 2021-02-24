@@ -4,24 +4,16 @@ import { Link } from 'react-router-dom';
 import {UserContext} from './App'
 
 function Nav() {
-  const userSpec = useContext(UserContext);
+  const userData = useContext(UserContext);
 
   useEffect(() => {
-    console.log(userSpec.user);
+    console.log(userData);
   })
 
 
   const handleLogout = () => {
-    userSpec.setUser({
-      ...userSpec.user,
-      id: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      mobile: "",
-      username: "",
-      isAuthenticated: false
-    });
+    userData.setcurrUser({});
+    sessionStorage.removeItem('loggedInUser');
     alert("You Have Logged Out");
   }
 
@@ -39,8 +31,8 @@ function Nav() {
             <Link to='/'>Home</Link>
             <Link to='/lend'>Lend</Link>
             <Link to='/borrow'>Borrow</Link>
-            {userSpec.user.isAuthenticated?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
-            {userSpec.user.isAuthenticated?<Link to='/lend'>Welcome {userSpec.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
+            {userData.currUser && userData.currUser.success?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
+            {userData.currUser && userData.currUser.success?<Link to='/lend'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
           </div>
         </nav>
 

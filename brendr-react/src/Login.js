@@ -14,7 +14,7 @@ function loginUsingGoogle() {
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const userSpec = useContext(UserContext);
+  const user = useContext(UserContext);
   let history = useHistory();
 
 
@@ -22,16 +22,8 @@ function Login() {
     axios.post(loginEndpoint, details).then(res => {
       console.log(res);
       if(res.data.success === true) {
-        userSpec.setUser({
-          ...userSpec.user,
-          id: res.data.user._id,
-          isAuthenticated: res.data.success,
-          firstname: res.data.user.firstname,
-          lastname: res.data.user.lastname,
-          email: res.data.user.email,
-          mobile: res.data.user.mobile,
-          username: res.data.user.username,
-        });
+        user.setcurrUser(res.data);
+        sessionStorage.setItem('loggedInUser',JSON.stringify(res.data));
         alert("Logged in Successfuly") 
         history.push("/");
       }

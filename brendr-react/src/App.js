@@ -11,19 +11,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 export const UserContext = React.createContext();
 
 function App() {
-  const [user, setUser] = useState({
-    id: "",
-    isAuthenticated: false,
-    firstname: "",
-    lastname: "",
-    email: "",
-    mobile: "",
-    username: "",
-  });
+  const [currUser,setcurrUser] = useState(JSON.parse(sessionStorage.getItem('loggedInUser')));
 
   return (
     <React.Fragment>
-      <UserContext.Provider value = {{user, setUser}}>
+      <UserContext.Provider value = {{currUser, setcurrUser}}>
         <Router>
           <Nav />
           <Switch>
