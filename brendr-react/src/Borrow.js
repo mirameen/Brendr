@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Borrow = () => {
+function Borrow() {
     return ( <h1>Borrow Page</h1> );
 }
  
