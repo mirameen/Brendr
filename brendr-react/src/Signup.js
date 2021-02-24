@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 const signupEndpoint = '/api/users/register'
 
-function submit(details) {
-  axios.post(signupEndpoint, details)
-}
+
 
 function signupUsingGoogle() {
   // TODO
@@ -14,12 +13,25 @@ function signupUsingGoogle() {
 
 function Signup() {
 
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-  const [email, setEmail] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  let history = useHistory();
+
+  function submit(details) {
+    axios.post(signupEndpoint, details).then(res => {
+      if(res.data.success === true){
+        alert("Successfully Registered");
+        history.push('/login');
+      }
+      else{
+        alert("Register again");
+      }
+    })
+  }
 
   return (
     <React.Fragment>

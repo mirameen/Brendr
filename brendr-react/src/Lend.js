@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import photo1 from './photos/photo1.png';
 import photo2 from './photos/photo2.png';
 import photo3 from './photos/photo3.png';
 import photo4 from './photos/photo4.png';
 import photo5 from './photos/photo5.png';
 import photo6 from './photos/photo6.png';
+import { Redirect } from 'react-router-dom';
+import { useContext } from 'react';
+import {UserContext} from './App';
 
 function Lend() {
+  const userSpec = useContext(UserContext);
+
+  useEffect(() => {
+    if(userSpec.user.isAuthenticated !== true){
+      alert("Please login to access this page");
+    }
+  },[])
+
+  if(userSpec.user.isAuthenticated !== true){
+    return <Redirect to = "/login" />;
+  }
+
+  else{
   return (
     <div className="post-content">
       <div className="row text-center">
@@ -108,6 +124,7 @@ function Lend() {
       </div>
     </div>
   );
+  }
 };
 
 export default Lend;

@@ -1,7 +1,30 @@
 import React from "react";
+import { useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import {UserContext} from './App'
 
 function Nav() {
+  const userSpec = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(userSpec.user);
+  })
+
+
+  const handleLogout = () => {
+    userSpec.setUser({
+      ...userSpec.user,
+      id: "",
+      firstname: "",
+      lastname: "",
+      email: "",
+      mobile: "",
+      username: "",
+      isAuthenticated: false
+    });
+    alert("You Have Logged Out");
+  }
+
   return (
     <React.Fragment>
       <header>
@@ -16,8 +39,8 @@ function Nav() {
             <Link to='/'>Home</Link>
             <Link to='/lend'>Lend</Link>
             <Link to='/borrow'>Borrow</Link>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Sign Up</Link>
+            {userSpec.user.isAuthenticated?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
+            {userSpec.user.isAuthenticated?<Link to='/lend'>Welcome {userSpec.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
           </div>
         </nav>
 

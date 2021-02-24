@@ -1,20 +1,47 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import {UserContext} from './App'
 
 const loginEndpoint = '/api/users/login'
 
-function submit(details) {
-  axios.post(loginEndpoint, details)
-}
 
 function loginUsingGoogle() {
   // TODO
 }
 
 function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const userSpec = useContext(UserContext);
+  let history = useHistory();
+
+
+  function submit(details) {
+    axios.post(loginEndpoint, details).then(res => {
+      console.log(res);
+      if(res.data.success === true) {
+        userSpec.setUser({
+          ...userSpec.user,
+          id: res.data.user._id,
+          isAuthenticated: res.data.success,
+          firstname: res.data.user.firstname,
+          lastname: res.data.user.lastname,
+          email: res.data.user.email,
+          mobile: res.data.user.mobile,
+          username: res.data.user.username,
+        });
+        alert("Logged in Successfuly") 
+        history.push("/");
+      }
+      else{
+        alert("Please enter username and password again");
+      }
+    });
+    setUsername('');
+    setPassword('');
+  }
 
   return (
     <React.Fragment>
