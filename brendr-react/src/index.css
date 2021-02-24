@@ -25,7 +25,7 @@ nav a {
 }
 
 .nav-left a {
-  font-family: Heebo;
+  font-family: Heebo, serif;
   font-style: normal;
   font-weight: 800;
   font-size: 36px;
@@ -42,7 +42,7 @@ nav a {
 }
 
 .nav-right a {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -57,9 +57,6 @@ nav a {
 
 .mobile-nav {
   display: none;
-}
-
-.mobile-nav {
   height: 100vh;
   width: 100%;
   transition: all 0.3s ease;
@@ -116,7 +113,7 @@ nav a {
 }
 
 .intro-top p {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -126,7 +123,7 @@ nav a {
 
 .intro-top h2 {
   margin-top: 26px;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -148,7 +145,7 @@ nav a {
 }
 
 .intro-bottom h2 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -158,7 +155,7 @@ nav a {
 
 .intro-bottom p {
   margin-top: 45px;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -168,7 +165,7 @@ nav a {
 
 .intro-bottom h4 {
   margin-top: 45px;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -189,7 +186,7 @@ nav a {
   outline: none;
   border: none;
 
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -205,7 +202,7 @@ nav a {
   height: 49px;
   border: none;
 
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -220,7 +217,7 @@ nav a {
 }
 
 .services h2 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -242,7 +239,7 @@ nav a {
 
 .cards h3 {
   margin-top: 35px;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -252,7 +249,7 @@ nav a {
 
 .cards p {
   margin-top: 25px;
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -261,7 +258,7 @@ nav a {
 }
 
 .cards button {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -314,7 +311,7 @@ nav a {
 }
 
 .testimonial .review {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
@@ -343,7 +340,7 @@ nav a {
 }
 
 .author-info h3 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -352,7 +349,7 @@ nav a {
 }
 
 .author-info h4 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -373,7 +370,7 @@ nav a {
 }
 
 .content h1 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 45px;
@@ -399,7 +396,7 @@ nav a {
 }
 
 .signup-content h1 {
-  font-family: Poppins;
+  font-family: Poppins, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 45px;
