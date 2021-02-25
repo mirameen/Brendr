@@ -22,7 +22,8 @@ router.post("/",function(req,res,next){
         inUse: inUse,
     };
     console.log(newItem)
-    Item.save(newItem,function(err,newlyCreated) {
+    var item = new Item(newItem);
+    item.save(function(err,newlyCreated) {
         if(err) {
             res.status(501);
             console.log(err);
