@@ -23,7 +23,10 @@ router.post("/",function(req,res,next){
     };
     console.log(newItem)
     Item.create(newItem,function(err,newlyCreated) {
-        if(err) console.log(err);
+        if(err) {
+            res.status(501);
+            console.log(err);
+        }
         else {
             console.log(newlyCreated);
             res.send(newlyCreated);
