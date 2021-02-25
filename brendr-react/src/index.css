@@ -364,9 +364,8 @@ nav a {
 }
 
 .content {
-  margin-top: 70px !important;
   width: 35%;
-  margin: 0 auto;
+  margin: 70px auto;
 }
 
 .content h1 {
@@ -390,9 +389,8 @@ nav a {
 }
 
 .signup-content {
-  margin-top: 70px !important;
   width: 45%;
-  margin: 0 auto;
+  margin: 70px auto;
 }
 
 .signup-content h1 {
