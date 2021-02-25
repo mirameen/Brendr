@@ -37,7 +37,7 @@ function Signup() {
     <React.Fragment>
       <div className="signup-content">
         <h1>Register</h1>
-        <form action="/register" method="POST">
+        <form action="/register" method="POST" onSubmit={(e)=>e.preventDefault}>
           <div className="form-row">
             <div className="col-md-6">
               <label htmlFor="name01">First name</label>
