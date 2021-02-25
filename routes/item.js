@@ -21,7 +21,7 @@ try{
     };
     console.log(newItem)
     var item = new Item(newItem);
-    item.save(function(err,newlyCreated) {
+    await item.save(function(err,newlyCreated) {
         if(err) {
             res.status(501);
             console.log(err);
