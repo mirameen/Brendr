@@ -2,19 +2,21 @@ var express = require('express');
 var router = express.Router();
 var Item = require("../models/Item")
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     Item.find({},function(err,items){
         if(err) console.log(err);
         else res.send(items);
     });
 });
 
-router.post("/",function(req,res,next){
+router.post("/",async(req,res){
 
-    var name  = req.body.name;
-    var image = req.body.image;
-    var desc  = req.body.description;
-    var inUse = req.body.inUse;
+    //var name  = req.body.name;
+    //var image = req.body.image;
+    //var desc  = req.body.description;
+    //var inUse = req.body.inUse;
+    const {name,image,desc,inUse}=req.body;   
+    try{        
     var newItem = {
         name: name,
         image: image,
@@ -23,7 +25,7 @@ router.post("/",function(req,res,next){
     };
     console.log(newItem)
     var item = new Item(newItem);
-    item.save(function(err,newlyCreated) {
+    await item.save(function(err,newlyCreated) {
         if(err) {
             res.status(501);
             console.log(err);
@@ -33,6 +35,11 @@ router.post("/",function(req,res,next){
             res.send(newlyCreated);
         }
     });
+}
+    catch(err){
+        console.log(err);
+        return res.status(500).json(err);
+    }
 
 });
 
