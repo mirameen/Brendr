@@ -14,6 +14,7 @@
     "jade": "~1.11.0",
     "mongoose": "^5.11.17",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-local-mongoose": "^6.1.0"
   },
