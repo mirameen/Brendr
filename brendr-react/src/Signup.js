@@ -5,8 +5,6 @@ import {useHistory} from 'react-router-dom';
 
 const signupEndpoint = '/api/users/register'
 
-
-
 function signupUsingGoogle() {
   // TODO
 }

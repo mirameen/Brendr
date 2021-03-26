@@ -45,7 +45,7 @@ router.post("/register",function(req,res,next){
                 console.log(err);
             }
         console.log('User database updated ' + user.email);
-        res.send( user);
+        res.json({ success: true, user: user });
         });
         
       });

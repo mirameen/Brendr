@@ -32,7 +32,7 @@ function Nav() {
             <Link to='/lend'>Lend</Link>
             <Link to='/borrow'>Borrow</Link>
             {userData.currUser && userData.currUser.success?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
-            {userData.currUser && userData.currUser.success?<Link to='/lend'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
+            {userData.currUser && userData.currUser.success?<Link to='/user'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
           </div>
         </nav>
 
