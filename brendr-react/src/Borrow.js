@@ -7,7 +7,7 @@ import axios from 'axios';
 function makeCard(item) {
   return (
     <div className="col-md-4 col-sm-6">
-      <div className="card">
+      <div className="card h-100">
         <img src={item.imageURL} className="card-img-top" alt="Item Image"/>
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
