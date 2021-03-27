@@ -80,6 +80,6 @@ function Login() {
       </div>
     </React.Fragment>
   );
-};
+}
 
 export default Login;

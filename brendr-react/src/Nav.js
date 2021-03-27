@@ -56,6 +56,6 @@ function Nav() {
       
     </React.Fragment>
   );
-};
+}
 
 export default Nav;
