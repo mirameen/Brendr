@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 router.post("/register",function(req,res,next){
 
     var name  = req.body.name;
-    var image = req.body.image;
+    var image = req.body.imageURL;
     var desc  = req.body.description;
     var inUse = req.body.inUse;
     var borrowlend=req.body.borrowlend;
@@ -51,20 +51,6 @@ router.post("/register",function(req,res,next){
       });
 
   });
-    /*
-    console.log(newItem)
-    var item = new Item(newItem);
-    item.save(function(err,newlyCreated) {
-        if(err) {
-            res.status(501);
-            console.log(err);
-        }
-        else {
-            console.log(newlyCreated);
-            res.send(newlyCreated);
-        }
-    });
-   */
 });
 
 module.exports = router
