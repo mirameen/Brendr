@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
-import {UserContext} from './App';
+import { UserContext } from './App';
 import axios from 'axios';
 
 function makeCard(item) {
@@ -28,8 +27,8 @@ function makeCards(items) {
     return <div></div>
   } else {
     var cards = []
-    for (var i = 0; i < items.length; ++i) {
-      cards.push(makeCard(items[i]))
+    for (const item of items) {
+      cards.push(makeCard(item))
     }
     return cards
   }
@@ -58,6 +57,6 @@ function Borrow() {
       </div>
     );
   }
-};
+}
 
 export default Borrow;

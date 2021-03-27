@@ -1,15 +1,9 @@
-import React from "react";
-import { useState, useContext, useEffect} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {UserContext} from './App'
 
 function Nav() {
   const userData = useContext(UserContext);
-
-  useEffect(() => {
-    console.log(userData);
-  })
-
 
   const handleLogout = () => {
     userData.setcurrUser({});
