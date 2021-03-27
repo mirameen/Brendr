@@ -6,7 +6,6 @@ import {UserContext} from './App'
 
 const loginEndpoint = '/api/users/login'
 
-
 function loginUsingGoogle() {
   // TODO
 }
