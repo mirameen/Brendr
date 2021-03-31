@@ -45,10 +45,10 @@ app.use('/api/users', usersRouter);
 app.use('/api/items',itemRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('brendr-react/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'brendr-react', 'build', 'index.html'));
   });
 }
 
