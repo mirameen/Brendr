@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Home from "./Home";
 import Nav from "./Nav";
 import Login from "./Login";
 import Signup from "./Signup";
 import Lend from "./Lend";
 import Borrow from "./Borrow";
+import User from "./User";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export const UserContext = React.createContext();
@@ -33,6 +33,9 @@ function App() {
             </Route>
             <Route exact path="/signup">
               <Signup />
+            </Route>
+            <Route exact path="/user">
+              <User />
             </Route>
           </Switch>
         </Router>

@@ -1,15 +1,9 @@
-import React from "react";
-import { useState, useContext, useEffect} from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {UserContext} from './App'
 
 function Nav() {
   const userData = useContext(UserContext);
-
-  useEffect(() => {
-    console.log(userData);
-  })
-
 
   const handleLogout = () => {
     userData.setcurrUser({});
@@ -32,7 +26,7 @@ function Nav() {
             <Link to='/lend'>Lend</Link>
             <Link to='/borrow'>Borrow</Link>
             {userData.currUser && userData.currUser.success?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
-            {userData.currUser && userData.currUser.success?<Link to='/lend'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
+            {userData.currUser && userData.currUser.success?<Link to='/user'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
           </div>
         </nav>
 
@@ -62,6 +56,6 @@ function Nav() {
       
     </React.Fragment>
   );
-};
+}
 
 export default Nav;

@@ -1,11 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const signupEndpoint = '/api/users/register'
-
-
 
 function signupUsingGoogle() {
   // TODO
@@ -145,6 +142,6 @@ function Signup() {
       </div>
     </React.Fragment>
   );
-};
+}
 
 export default Signup;

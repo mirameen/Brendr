@@ -2,7 +2,6 @@ import React from 'react';
 import heroImg from './photos/heroImg.jpg';
 import person4 from './photos/person4.png';
 
-
 function Home() {
     return ( <div className="main-conatainer">
     <div className="intro-top">

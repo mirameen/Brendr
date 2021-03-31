@@ -5,7 +5,8 @@ var UserSchema = new mongoose.Schema({
     firstname: {type: String, required: true},
     lastname:  {type: String, required: true},
     mobile: {type: String, required: true},
-    email: {type: String, required: true}
+    email: {type: String, required: true},
+    itemHistory: [{ type: mongoose.Schema.ObjectId, ref: 'Item'}]
 });
 
 UserSchema.plugin(passportLocalMongoose);
