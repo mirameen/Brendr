@@ -15,6 +15,7 @@ router.post("/",function(req,res,next){
     var image = req.body.image;
     var desc  = req.body.description;
     var inUse = req.body.inUse;
+    
     var newItem = {
         name: name,
         image: image,
