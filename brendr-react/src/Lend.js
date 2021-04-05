@@ -1,21 +1,88 @@
-import React, { useEffect, useContext } from "react";
-import photo1 from './photos/photo1.png';
-import photo2 from './photos/photo2.png';
-import photo3 from './photos/photo3.png';
-import photo4 from './photos/photo4.png';
-import photo5 from './photos/photo5.png';
-import photo6 from './photos/photo6.png';
+import React, {useState, useEffect, useContext } from "react";
 import { Redirect } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { UserContext } from './App';
+import axios from 'axios';
+
+const requestEndpoint = '/api/requests/register';
 
 function Lend() {
   const userSpec = useContext(UserContext);
+
+  const [items, setItems] = useState([]);
+  let history = useHistory();
 
   useEffect(() => {
     if(!userSpec.currUser || userSpec.currUser.success !== true){
       alert("Please login to access this page");
     }
+    axios.get('/api/items/').then(res => setItems(res.data));
   },[])
+
+  function submit(details) {
+    axios.post(requestEndpoint, details).then(res => {
+      if (res.data.success === true){
+        alert("Your request has been sent to the borrower, the borrower will contact you soon");
+        history.push('/user');
+      }
+      else if(res.data.success === false){
+        alert("You have already requested");
+      }
+      else{
+        alert("Error");
+      }
+    })
+  }
+
+  function makeCard(item) {
+    return (
+      <div className="col-md-4 col-sm-6 d-flex align-items-stretch">
+        <div className="card">
+          <img src={item.imageURL} className="card-img-top" alt="Item Image"/>
+          <div className="card-body">
+            <h5 className="card-title">{item.name}</h5>
+            <p className="card-text">
+              {item.description}
+            </p>
+            <p className="card-text">
+              Contact : {item.userID.mobile} for more details
+            </p>
+            <button type="button" className="btn btn-outline-primary" onClick = {() => submit({
+              borrowReq: {
+                requestType : true,
+                itemID : item._id,
+                sendUserID : item.userID._id,
+                receiveUserID : userSpec.currUser.user._id,
+                status : "Accepted"
+              },
+              lendReq: {
+                requestType : false,
+                itemID : item._id,
+                sendUserID : userSpec.currUser.user._id,
+                receiveUserID : item.userID._id,
+                status : "Accepted"
+              }
+            })}>
+              Lend
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  function makeCards(items) {
+    if (items.length == 0) {
+      return <div></div>
+    } else {
+      console.log(items[0]);
+      var cards = []
+      for (const item of items) {
+        if(item.borrowlend === true) cards.push(makeCard(item));
+      }
+      return cards
+    }
+  }
 
   if(!userSpec.currUser || userSpec.currUser.success !== true){
     return <Redirect to = "/login" />;
@@ -25,101 +92,7 @@ function Lend() {
   return (
     <div className="post-content">
       <div className="row text-center">
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo1} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo2} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo3} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo4} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo5} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-4 col-sm-6">
-          <div className="card">
-            <img src={photo6} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h5 className="card-title">Carl James</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-outline-primary">
-                Go somewhere
-              </a>
-            </div>
-          </div>
-        </div>
+        {makeCards(items)}
       </div>
     </div>
   );

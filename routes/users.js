@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport=require("passport");
-var User = require("../models/User")
+var User = require("../models/User");
 
 /* GET users listing. */
 router.post('/register', function(req, res) {
@@ -50,6 +50,19 @@ router.post('/login',function(req,res) {
       }) (req, res); 
     } 
   } 
+});
+
+router.get('/:id', function(req,res){
+  User.findById(req.params.id)
+      .populate('itemHistory')
+      .exec(function(err,foundUser){
+        if(err || !foundUser){
+          console.log(err);
+        }
+        else {
+          res.send(foundUser);
+        }
+      });
 });
 
 module.exports = router;
