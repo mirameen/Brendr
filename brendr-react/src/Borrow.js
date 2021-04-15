@@ -77,7 +77,7 @@ function Borrow() {
     } else {
       var cards = []
       for (const item of items) {
-        if(item.borrowlend === false) cards.push(makeCard(item));
+        if(item.borrowlend === false && item.userID._id!=userSpec.currUser.user._id) cards.push(makeCard(item));
       }
       return cards
     }

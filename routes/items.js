@@ -5,7 +5,7 @@ var User = require("../models/User")
 
 router.get('/', (req, res, next) => {
   Item
-    .find({})
+    .find({inUse: true})
     .populate('userID')
     .then(items => res.send(items), err => console.log(err));
 });

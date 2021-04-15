@@ -32,6 +32,14 @@ async function registerRequest(req, res) {
       receiveUserID : req.body.lendReq.receiveUserID,
       status : req.body.lendReq.status
     });
+
+    if(req.body.lendReq.status === "Accepted")
+    {
+      var itemRequested = await Item.findOne({"_id" : req.body.lendReq.itemID});
+      itemRequested.inUse = false;
+      itemRequested= await itemRequested.save().catch( err => console.log(err));
+    }
+
     requestLend.save().then( (request) => {
       console.log(request);
       res.json({ success: true });
@@ -52,13 +60,25 @@ async function decisionRequest(req, res) {
   borrowReq = await borrowReq.save().catch( err => console.log(err));
   var lendReq = await Request.findOne({$and : [{receiveUserID:req.body.sendUserID}, {itemID : req.body.itemID}]});
   lendReq.status = req.body.status;
+  console.log('borrow req done!');
+  
+  if(req.body.status === "Accepted")
+  {
+    var itemRequested = await Item.findOne({"_id" : req.body.itemID});
+    itemRequested.inUse = false;
+    itemRequested= await itemRequested.save().catch( err => console.log(err));
+  }
+  
+  console.log('inuse false done!');
   lendReq = await lendReq.save().then( (request) => {
     console.log(request);
+    console.log('lend req done!');
     res.json({ success: true });
   }, err => {
     console.log(err)
     res.json({success : false});
   });
+  
 }
 
 router.post('/decision', (req, res, next) => decisionRequest(req, res));
