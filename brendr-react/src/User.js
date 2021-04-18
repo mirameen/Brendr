@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import {UserContext} from './App';
+import {RequestIDContext} from './App';
 import person4 from './photos/person4.png';
 
 const itemEndpoint = '/api/items/register';
@@ -14,6 +15,7 @@ function User() {
   const [itemImageUrl, setItemImageUrl] = useState('');
   const [itemRequestType, setItemRequestType] = useState(false);
   const user = useContext(UserContext);
+  const requestID = useContext(RequestIDContext);
   const [itemHistory, setItemHistory] = useState([]);
   const [blRequests, setBlRequests] = useState([]);
   let history = useHistory();
@@ -46,6 +48,11 @@ function User() {
         alert("Error");
       }
     })
+  }
+
+  function gotoComplaint(request){
+    requestID.setcurrRequestID(request._id);
+    history.push('/complaint');
   }
 
   function makeCardItem(item) {
@@ -83,19 +90,23 @@ function User() {
     if(item.requestType === true){
       return (
         <div className="card mt-4">
-          <div class="card-header">
+          <div className="card-header">
             <span className="badge badge-primary">Borrow Request</span>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{item.itemID.name}</h5>
-            <p class="card-text">Request Received From : {item.sendUserID.firstname} to <b>Borrow</b> the above item from you</p>
-            {item.status === "Processing"?<button type="button" class="btn btn-success" onClick={() => submitRequest({
+          <div className="card-body">
+            <h5 className="card-title">{item.itemID.name}</h5>
+            <p className="card-text">Request Received From : {item.sendUserID.firstname} to <b>Borrow</b> the above item from you</p>
+            {item.status === "Processing"?<button type="button" className="btn btn-success" onClick={() => submitRequest({
               sendUserID:item.sendUserID._id,
               itemID:item.itemID._id,
               receiveUserID:item.receiveUserID._id,
               status:"Accepted"
-            })}>Accept</button>:<span className="badge badge-info">{item.status}</span>}
-            {item.status === "Processing"?<button type="button" class="btn btn-danger ml-3" onClick={() => submitRequest({
+            })}>Accept</button>:<div className="d-flex justify-content-between align-items-center">
+              <span className="badge badge-info">{item.status}</span>
+              {item.status === "Accepted"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+              </div>
+            }
+            {item.status === "Processing"?<button type="button" className="btn btn-danger ml-3" onClick={() => submitRequest({
               sendUserID:item.sendUserID._id,
               itemID:item.itemID._id,
               receiveUserID:item.receiveUserID._id,
@@ -108,14 +119,17 @@ function User() {
 
     return (
       <div className="card mt-4">
-        <div class="card-header">
+        <div className="card-header">
           <span className="badge badge-warning">Lend Request</span>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">{item.itemID.name}</h5>
-          <p class="card-text">Request sent to : {item.sendUserID.firstname}, asking him to <b>Lend</b> the above item</p>
-          {item.status === "Accepted"?<p class="card-text">You may contact the lender now, Contact : {item.sendUserID.mobile}</p>:<span></span>}
-          <p class="card-text">Current Status : <span className="badge badge-info">{item.status}</span></p>
+        <div className="card-body">
+          <h5 className="card-title">{item.itemID.name}</h5>
+          <p className="card-text">Request sent to : {item.sendUserID.firstname}, asking him to <b>Lend</b> the above item</p>
+          {item.status === "Accepted"?<p className="card-text">You may contact the lender now, Contact : {item.sendUserID.mobile}</p>:<span></span>}
+          <div  className="d-flex justify-content-between align-items-center">
+            <p className="card-text">Current Status : <span className="badge badge-info">{item.status}</span></p>
+            {item.status === "Accepted"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+          </div>
         </div>
       </div>
     );

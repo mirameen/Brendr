@@ -33,8 +33,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//'mongodb+srv://mirameen84:VXIg8sFOpVnhZ4mB@mongouploads.ppu8t.mongodb.net/brendrTesting?retryWrites=true&w=majority'
-mongoose.connect('mongodb+srv://nipun:nipun@cluster0.he0ej.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+//'mongodb+srv://nipun:nipun@cluster0.he0ej.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose.connect('mongodb+srv://mirameen84:VXIg8sFOpVnhZ4mB@mongouploads.ppu8t.mongodb.net/brendrTesting?retryWrites=true&w=majority',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

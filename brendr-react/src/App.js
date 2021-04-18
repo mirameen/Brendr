@@ -6,15 +6,18 @@ import Signup from "./Signup";
 import Lend from "./Lend";
 import Borrow from "./Borrow";
 import User from "./User";
+import Complaint from "./Complaint";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export const UserContext = React.createContext();
+export const RequestIDContext = React.createContext();
 
 function App() {
   const [currUser,setcurrUser] = useState(JSON.parse(sessionStorage.getItem('loggedInUser')));
-
+  const [currRequestID, setcurrRequestID] = useState('');
   return (
     <React.Fragment>
+      <RequestIDContext.Provider value = {{currRequestID, setcurrRequestID}}>
       <UserContext.Provider value = {{currUser, setcurrUser}}>
         <Router>
           <Nav />
@@ -37,9 +40,13 @@ function App() {
             <Route exact path="/user">
               <User />
             </Route>
+            <Route exact path="/complaint">
+              <Complaint />
+            </Route>
           </Switch>
         </Router>
       </UserContext.Provider>
+      </RequestIDContext.Provider>
     </React.Fragment>
   );
 }
