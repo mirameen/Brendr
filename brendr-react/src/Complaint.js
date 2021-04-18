@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import {RequestIDContext} from './App';
 
-const complaintEndpoint = '/api/complaints/register';
+const complaintEndpoint = '/api/conflicts/register';
 
 function Complaint() {
 
@@ -14,7 +14,7 @@ function Complaint() {
   
     function submit(details) {
         console.log(details);
-      /*axios.post(complaintEndpoint, details).then(res => {
+      axios.post(complaintEndpoint, details).then(res => {
         if(res.data.success === true){
           alert("Complaint Successfully Registered");
           history.push('/user');
@@ -22,7 +22,7 @@ function Complaint() {
         else{
           alert("Register again");
         }
-      })*/
+      })
     }
   
     return (

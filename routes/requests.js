@@ -21,7 +21,8 @@ async function registerRequest(req, res) {
       itemID : req.body.borrowReq.itemID,
       sendUserID : req.body.borrowReq.sendUserID,
       receiveUserID : req.body.borrowReq.receiveUserID,
-      status : req.body.borrowReq.status
+      status : req.body.borrowReq.status,
+      conflictStatus: "False"
     });
     requestBorrow = await requestBorrow.save().catch(err => console.log(err));
 
@@ -30,7 +31,8 @@ async function registerRequest(req, res) {
       itemID : req.body.lendReq.itemID,
       sendUserID : req.body.lendReq.sendUserID,
       receiveUserID : req.body.lendReq.receiveUserID,
-      status : req.body.lendReq.status
+      status : req.body.lendReq.status,
+      conflictStatus: "False"
     });
 
     if(req.body.lendReq.status === "Accepted")

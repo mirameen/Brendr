@@ -10,6 +10,29 @@ router.get('/', (req, res, next) => {
     .then(items => res.send(items), err => console.log(err));
 });
 
+async function deleteItem(req, res) {
+  console.log(req.body.itemID);
+  console.log(req.body.userID);
+  var user = await User.findOne({"_id" : req.body.userID});
+  if(user===null){
+    console.log('User not found')
+  }
+  else{
+  var index = user.itemHistory.indexOf(req.body.itemID);
+  if (index > -1) {
+  user.itemHistory.splice(index, 1);
+  }
+  user.save().catch(err => console.log(err));
+
+  Item.findByIdAndDelete(req.body.itemID, function (err) {
+    if(!err) res.json({success:true});
+    else console.log(err);
+  }); 
+}
+}
+
+router.post('/delete', (req, res, next) => deleteItem(req, res));
+
 async function registerItem(req, res) {
   const user = await User.findOne({ email: req.body.email });
   if (user === null) {

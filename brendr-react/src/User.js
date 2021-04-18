@@ -55,6 +55,18 @@ function User() {
     history.push('/complaint');
   }
 
+  function deleteItem(item){
+    axios.post("/api/items/delete", item).then(res => {
+      if (res.data.success === true){
+        alert("Item deleted succesfully.");
+        history.push('/user');
+      }
+      else{
+        alert("Error");
+      }
+    })
+  }
+
   function makeCardItem(item) {
     return (
       <div className="col-md-4 col-sm-6 d-flex align-items-stretch">
@@ -66,6 +78,7 @@ function User() {
               {item.description}
             </p>
             {item.borrowlend === true?<p><span className="badge badge-primary">Borrow request</span></p>:<p><span className="badge badge-warning">Lend request</span></p>}
+            {item.inUse===true?<button type="button" className="btn btn-danger" onClick={() => deleteItem({itemID : item._id, userID : item.userID})}>Delete</button>:<span></span>}
           </div>
         </div>
       </div>
@@ -103,7 +116,7 @@ function User() {
               status:"Accepted"
             })}>Accept</button>:<div className="d-flex justify-content-between align-items-center">
               <span className="badge badge-info">{item.status}</span>
-              {item.status === "Accepted"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+              {item.status === "Accepted" && item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
               </div>
             }
             {item.status === "Processing"?<button type="button" className="btn btn-danger ml-3" onClick={() => submitRequest({
@@ -128,7 +141,7 @@ function User() {
           {item.status === "Accepted"?<p className="card-text">You may contact the lender now, Contact : {item.sendUserID.mobile}</p>:<span></span>}
           <div  className="d-flex justify-content-between align-items-center">
             <p className="card-text">Current Status : <span className="badge badge-info">{item.status}</span></p>
-            {item.status === "Accepted"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+            {item.status === "Accepted" && item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
           </div>
         </div>
       </div>

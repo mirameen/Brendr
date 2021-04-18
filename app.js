@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const itemRouter  = require('./routes/items');
 const requestRouter  = require('./routes/requests');
+const conflictRouter = require('./routes/conflicts')
 
 
 const app = express();
@@ -55,6 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/api/items',itemRouter);
 app.use('/api/requests',requestRouter);
+app.use('/api/conflicts',conflictRouter);
 
 
 if (process.env.NODE_ENV === 'production') {
