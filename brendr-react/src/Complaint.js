@@ -60,7 +60,7 @@ function Complaint() {
             <div className="button-align">
               <button type="button" className="btn btn-outline-success" onClick = {() => submit({
                   title:title,
-                  desc:desc,
+                  description:desc,
                   requestID:requestID.currRequestID
               })}>
                 Submit

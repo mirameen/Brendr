@@ -116,7 +116,9 @@ function User() {
               status:"Accepted"
             })}>Accept</button>:<div className="d-flex justify-content-between align-items-center">
               <span className="badge badge-info">{item.status}</span>
-              {item.status === "Accepted" && item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+              {item.status === "Accepted"?
+                item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>
+                : item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<span className="badge badge-success">Conflict Resolved</span>:<span></span>}
               </div>
             }
             {item.status === "Processing"?<button type="button" className="btn btn-danger ml-3" onClick={() => submitRequest({
@@ -141,7 +143,9 @@ function User() {
           {item.status === "Accepted"?<p className="card-text">You may contact the lender now, Contact : {item.sendUserID.mobile}</p>:<span></span>}
           <div  className="d-flex justify-content-between align-items-center">
             <p className="card-text">Current Status : <span className="badge badge-info">{item.status}</span></p>
-            {item.status === "Accepted" && item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>:<span></span>}
+            {item.status === "Accepted"?
+              item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>
+              : item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<span className="badge badge-success">Conflict Resolved</span>:<span></span>}
           </div>
         </div>
       </div>

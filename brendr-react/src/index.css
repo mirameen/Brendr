@@ -12,12 +12,20 @@ header {
   margin: 0 auto;
 }
 
-nav {
+.navbar-user {
   display: flex;
   justify-content: space-around;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  padding-top: 25px;
+  padding-bottom: 15px;
   background: hsl(205, 100%, 96%);
+}
+
+.navbar-admin {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  background: hsl(62, 96%, 77%);
 }
 
 nav a {

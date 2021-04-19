@@ -14,7 +14,7 @@ function Nav() {
   return (
     <React.Fragment>
       <header>
-        <nav id="navbar">
+        <nav className={userData.currUser && userData.currUser.user.admin === true?"navbar-admin":"navbar-user"}>
           <div className="nav-left">
             <Link to='/'>Brendr</Link>
           </div>
@@ -26,7 +26,10 @@ function Nav() {
             <Link to='/lend'>Lend</Link>
             <Link to='/borrow'>Borrow</Link>
             {userData.currUser && userData.currUser.success?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
-            {userData.currUser && userData.currUser.success?<Link to='/user'>Welcome {userData.currUser.user.firstname}!</Link>:<Link to='/signup'>Sign Up</Link>}
+            {userData.currUser && userData.currUser.success?
+              userData.currUser.user.admin === false ? <Link to='/user'>Welcome {userData.currUser.user.firstname}!</Link>
+              : <Link to='/admin'>Welcome {userData.currUser.user.firstname}! <p><b>(Admin)</b></p></Link>
+              :<Link to='/signup'>Sign Up</Link>}
           </div>
         </nav>
 

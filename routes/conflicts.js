@@ -7,7 +7,7 @@ var Conflict=require("../models/Conflict")
 
 router.get('/', (req, res, next) => {
   Conflict
-    .find()
+    .find({})
     .then(conflicts => res.send(conflicts), err => console.log(err));
 });
 
@@ -23,7 +23,7 @@ async function registerConflict(req, res) {
 
    }
 
-   var request2 = await Request.findOne({$and : [{sendUserID:request.sendUserID}, {itemID : request.itemID}]});
+   var request2 = await Request.findOne({$and : [{receiveUserID:request.sendUserID}, {itemID : request.itemID}]});
   if (request2 === null) {
     console.log('Request not found.');
   }

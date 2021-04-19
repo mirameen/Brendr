@@ -7,6 +7,7 @@ import Lend from "./Lend";
 import Borrow from "./Borrow";
 import User from "./User";
 import Complaint from "./Complaint";
+import Admin from "./Admin";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export const UserContext = React.createContext();
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route exact path="/complaint">
               <Complaint />
+            </Route>
+            <Route exact path="/admin">
+              <Admin />
             </Route>
           </Switch>
         </Router>
