@@ -9,6 +9,7 @@ import Complaint from './Complaint';
 function Admin() {
   const user = useContext(UserContext);
   const [complaintList, setComplaintList] = useState([]);
+  const [comment, setComment] = useState("");
   let history = useHistory();
 
   useEffect(() => {
@@ -36,14 +37,14 @@ function Admin() {
             <p className="card-text">
               {complaint.description}
             </p>
-            {complaint.resolved === false?<p><span className="badge badge-warning">Processing</span></p>:<p><span className="badge badge-success">Resolved</span></p>}
+            {complaint.resolved === false?<p><span className="badge badge-warning">Awaiting Your Decision</span></p>:<p><span className="badge badge-success">Resolved</span></p>}
             {complaint.resolved === false?
               <form class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
                   <label for="inputPassword2" class="sr-only">Password</label>
-                  <input type="text" class="form-control" id="inputPassword2" placeholder="Admin Comment" />
+                  <input type="text" class="form-control" id="inputPassword2" placeholder="Admin Comment" onInput={e => setComment(e.target.value)}/>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2" onClick = {() => resolveComplaint({})}>Resolve</button>
+                <button type="submit" class="btn btn-primary mb-2" onClick = {() => resolveComplaint({conflictID:complaint._id,comment:comment,requestID:complaint.requestID})}>Resolve</button>
               </form>
               : <p><b>Admin Comments</b> : {complaint.adminComment}</p>}
           </div>

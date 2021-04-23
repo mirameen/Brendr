@@ -14,7 +14,7 @@ function Nav() {
   return (
     <React.Fragment>
       <header>
-        <nav className={userData.currUser && userData.currUser.user.admin === true?"navbar-admin":"navbar-user"}>
+        <nav className={userData.currUser && userData.currUser.user && userData.currUser.user.admin === true?"navbar-admin":"navbar-user"}>
           <div className="nav-left">
             <Link to='/'>Brendr</Link>
           </div>

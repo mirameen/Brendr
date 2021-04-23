@@ -3,6 +3,7 @@ var router = express.Router();
 var Item = require("../models/Item")
 var Request = require("../models/Request")
 var User = require("../models/User")
+var Conflict = require("../models/Conflict")
 
 router.get('/:id', (req, res, next) => {
     Request
@@ -85,5 +86,6 @@ async function decisionRequest(req, res) {
 
 router.post('/decision', (req, res, next) => decisionRequest(req, res));
 
+router.post('/register', (req, res, next) => registerRequest(req, res));
 
 module.exports = router

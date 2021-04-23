@@ -18,6 +18,7 @@ function User() {
   const requestID = useContext(RequestIDContext);
   const [itemHistory, setItemHistory] = useState([]);
   const [blRequests, setBlRequests] = useState([]);
+  const [comment, setComment] = useState({});
   let history = useHistory();
 
   useEffect(() => {
@@ -67,6 +68,19 @@ function User() {
     })
   }
 
+  function getComment(item){
+    axios.post("/api/conflicts/comment", item).then(res => {
+      if (res.data.success === true){
+        setComment({...comment, [item.itemID._id] : res.data.comment});
+        history.push('/user');
+        console.log(comment);
+      }
+      else{
+        alert("Error");
+      }
+    })
+  }
+
   function makeCardItem(item) {
     return (
       <div className="col-md-4 col-sm-6 d-flex align-items-stretch">
@@ -100,6 +114,7 @@ function User() {
   }
 
   function makeCardRequest(item) {
+    
     if(item.requestType === true){
       return (
         <div className="card mt-4">
@@ -118,7 +133,7 @@ function User() {
               <span className="badge badge-info">{item.status}</span>
               {item.status === "Accepted"?
                 item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>
-                : item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<span className="badge badge-success">Conflict Resolved</span>:<span></span>}
+                :  item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<div><button type="button" className="btn btn-success" onClick={() => getComment(item)}>Conflict Resolved</button>{comment[item.itemID._id]?<p className='m-2'>Admin's Comment: {comment[item.itemID._id]}</p>:<span></span>}</div>:<span></span>}
               </div>
             }
             {item.status === "Processing"?<button type="button" className="btn btn-danger ml-3" onClick={() => submitRequest({
@@ -145,7 +160,7 @@ function User() {
             <p className="card-text">Current Status : <span className="badge badge-info">{item.status}</span></p>
             {item.status === "Accepted"?
               item.conflictStatus==="False"?<button type="button" className="btn btn-warning" onClick={() => gotoComplaint(item)}>Complain</button>
-              : item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<span className="badge badge-success">Conflict Resolved</span>:<span></span>}
+              : item.conflictStatus === "Raised"?<span className="badge badge-danger">Conflict Raised</span>:<div><button type="button" className="btn btn-success" onClick={() => getComment(item)}>Conflict Resolved</button>{comment[item.itemID._id]?<p className='m-2'>Admin's Comment: {comment[item.itemID._id]}</p>:<span></span>}</div>:<span></span>}
           </div>
         </div>
       </div>
