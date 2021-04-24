@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {UserContext} from './App';
 import person4 from './photos/person4.png';
 import Complaint from './Complaint';
-
+import Chart from './Chart';
 
 function Admin() {
   const user = useContext(UserContext);
@@ -90,6 +90,9 @@ function Admin() {
         </div>
         <div className="row text-center">
           {makeCardsComplaint(complaintList)}
+        </div>
+        <div className="row text-center">
+          {Chart()}
         </div>
       </div>
     </React.Fragment>
