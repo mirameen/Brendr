@@ -88,8 +88,11 @@ function Admin() {
         <div className="alert alert-danger mt-5" role="alert">
           <b>User Complaints</b>
         </div>
-        <div className="row text-center">
+        <div className="row text-center mb-5">
           {makeCardsComplaint(complaintList)}
+        </div>
+        <div className="alert alert-success mt-4 mb-5" role="alert">
+            <b>Data Monitoring</b>
         </div>
         <div className="row text-center">
           {Chart()}

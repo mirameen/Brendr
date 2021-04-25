@@ -22,9 +22,11 @@ function Nav() {
             <i className="fas fa-bars"></i>
           </div>
           <div className="nav-right">
+            {userData.currUser && userData.currUser.success ?
+              userData.currUser.user.admin === false ?<Link to='/lend'>Lend</Link>:<span></span>:<Link to='/lend'>Lend</Link>}
+            {userData.currUser && userData.currUser.success ?
+              userData.currUser.user.admin === false ?<Link to='/borrow'>Borrow</Link>:<span></span>:<Link to='/borrow'>Borrow</Link>}
             <Link to='/'>Home</Link>
-            <Link to='/lend'>Lend</Link>
-            <Link to='/borrow'>Borrow</Link>
             {userData.currUser && userData.currUser.success?<Link to='/' onClick = {handleLogout}>Logout</Link>:<Link to='/login'>Login</Link>}
             {userData.currUser && userData.currUser.success?
               userData.currUser.user.admin === false ? <Link to='/user'>Welcome {userData.currUser.user.firstname}!</Link>

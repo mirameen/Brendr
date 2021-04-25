@@ -28,11 +28,11 @@ const itemData = [
 const borrowData = [
     {
           "name": "Borrows",
-          "value": 0.30
+          "value": 0.62
     },
     {
           "name": "Lends",
-          "value": 0.70
+          "value": 0.38
     },
 ];
 
@@ -106,6 +106,7 @@ export default function Chart() {
         </PieChart>
       </ResponsiveContainer>
       <ResponsiveContainer width="55%" height={400}>
+        
         <PieChart width={530} height={250}>
           <Legend verticalAlign="middle" align="right"/>
           <Pie data={inUseData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label labelLine={false}>
