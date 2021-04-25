@@ -1,8 +1,24 @@
 import React from 'react';
 import heroImg from './photos/heroImg.jpg';
 import person4 from './photos/person4.png';
+import {useHistory} from 'react-router-dom';
 
 function Home() {
+
+  let history = useHistory();
+
+  function gotoSignUp(){
+    history.push('/signup');
+  }
+
+  function gotoLend(){
+    history.push('/lend');
+  }
+
+  function gotoBorrow(){
+    history.push('/borrow');
+  }
+
     return ( <div className="main-conatainer">
     <div className="intro-top">
       <p>Can't find trusted people to borrow from?</p>
@@ -23,7 +39,7 @@ function Home() {
       </p>
       <h4>Want to join us?</h4>
       <div className="email-form">
-        <button>Sign Up</button>
+        <button type="button" onClick={() => gotoSignUp()}>Sign Up</button>
       </div>
     </div>
 
@@ -35,33 +51,29 @@ function Home() {
             <div className="icon1"><i className="fas fa-pencil-alt"></i></div>
             <h3>Lend</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a
-              metus ac nulla consequat aliquet id quis turpis.
+              Lend items of your choice or to other users who have requested for the item on Brendr.
             </p>
-            <button>Get started</button>
+            <button type="button" onClick={() => gotoLend()}>Get started</button>
           </div>
           <div className="cards">
             <div className="icon2"><i className="fas fa-code"></i></div>
             <h3>Borrow</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a
-              metus ac nulla consequat aliquet id quis turpis.
+              Borrow items by putting out request on Brendr or by browsing through the items being lended on Brendr
             </p>
-            <button>Get started</button>
+            <button type="button" onClick={() => gotoBorrow()}>Get started</button>
           </div>
           <div className="cards">
             <div className="icon3"><i className="fas fa-server"></i></div>
             <h3>Back End</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a
-              metus ac nulla consequat aliquet id quis turpis.
+              This Service is provided to admins who are verified and selected to monitor the platform and resolve any complaints or issues.
             </p>
-            <button>Get started</button>
           </div>
         </div>
       </div>
 
-      <div className="testimonial">
+      <div className="testimonial mb-5">
         <p className="review">
           “Brendr has helped me a lot, and has saved me a lot of money.
           Whenever I think of buying anything which I would use just once or
