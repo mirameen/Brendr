@@ -6,6 +6,7 @@ var UserSchema = new mongoose.Schema({
     lastname:  {type: String, required: true},
     mobile: {type: String, required: true},
     email: {type: String, required: true},
+    admin: Boolean,
     itemHistory: [{ type: mongoose.Schema.ObjectId, ref: 'Item'}]
 });
 

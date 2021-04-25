@@ -11,6 +11,7 @@ router.post('/register', function(req, res) {
       email: req.body.email,
       mobile: req.body.mobile,
       username: req.body.username,
+      admin: false
     })
     User.register(user,req.body.password, (err,resp) => {
       if(err) {
