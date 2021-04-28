@@ -5,6 +5,9 @@ A platform for efficient borrowing-lending in close-knit communities.
 ## Description
 Brendr is implemented as a MERN stack web-app that provides a platform for free borrowing-lending between people in close-knit communities like college campuses.
 
+## Usage
+Brendr is hosted on Heroku [here](https://brendr.herokuapp.com).
+
 ## Screenshots
 ![homepage](images/homepage.png)
 ![borrow](images/borrow.png)
